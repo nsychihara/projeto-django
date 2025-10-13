@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 40px; }
+        h1 { color: #333; }
+        form { margin-bottom: 20px; }
+        input[type="text"] { padding: 8px; width: 300px; }
+        button { padding: 8px 12px; }
+        ul { list-style: none; padding: 0; }
+        li { background: white; padding: 10px; margin-bottom: 5px; border-radius: 5px; }
+        .done { text-decoration: line-through; color: gray; }
+        a { text-decoration: none; color: red; margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h1>📝 Minha Lista de Tarefas</h1>
+
+    <form method="post" action="{% url 'add_task' %}">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Digite uma tarefa..." required>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <a href="{% url 'toggle_task' task.id %}">
+                    {% if task.completed %}
+                        ✅ <span class="done">{{ task.title }}</span>
+                    {% else %}
+                        ⬜ {{ task.title }}
+                    {% endif %}
+                </a>
+                <a href="{% url 'delete_task' task.id %}">🗑️</a>
+            </li>
+        {% empty %}
+            <li>Nenhuma tarefa adicionada ainda.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
