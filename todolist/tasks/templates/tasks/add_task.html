@@ -1,21 +1,16 @@
 {% extends 'tasks/base.html' %}
+{% block title %}Adicionar Tarefa{% endblock %}
 
 {% block content %}
-<div class="container" style="max-width: 600px; margin-top: 50px;">
-    <h1 style="text-align: center; margin-bottom: 30px;">Adicionar nova tarefa</h1>
+<div class="container">
+    <h1>➕ Adicionar Nova Tarefa</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
-
-        <button type="submit" 
-                style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-            Salvar tarefa
-        </button>
+        <button type="submit">Salvar Tarefa</button>
     </form>
 
-    <div style="margin-top: 20px;">
-        <a href="{% url 'task_list' %}" style="text-decoration: none; color: #555;">← Voltar para a lista</a>
-    </div>
+    <a href="{% url 'task_list' %}" class="back-link">← Voltar para a lista</a>
 </div>
 {% endblock %}
