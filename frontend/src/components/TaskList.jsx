@@ -5,7 +5,6 @@ export default function TaskList() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
-  // 🟩 Buscar tarefas do Django API
   const fetchTasks = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}`);
@@ -15,7 +14,6 @@ export default function TaskList() {
     }
   };
 
-  // 🟦 Adicionar nova tarefa
   const addTask = async (e) => {
     e.preventDefault();
     if (!newTask.trim()) return;
@@ -29,7 +27,6 @@ export default function TaskList() {
     }
   };
 
-  // 🟥 Deletar tarefa
   const deleteTask = async (id) => {
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}${id}/`);
