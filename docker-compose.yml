@@ -1,15 +1,27 @@
 services:
   web:
-    build: .
+    build: ./backend
     container_name: django_app
     volumes:
-      - .:/app
+      - ./backend:/app
     ports:
       - "8000:8000"
     env_file:
       - .env
     depends_on:
       - db
+
+  frontend:
+    build: ./frontend
+    container_name: react_app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+    environment: 
+      - VITE_API_URL=http://localhost:8000/api/tasks
+    depends_on:
+      - web
 
   db:
     image: postgres:15
@@ -20,6 +32,6 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
+  
 volumes:
   postgres_data:
