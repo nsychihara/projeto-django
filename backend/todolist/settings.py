@@ -3,9 +3,11 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-coloque-uma-chave-aqui'
+SECRET_KEY = 'k4chak4@'
 DEBUG = True
 ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = [ALLOWED_HOSTS]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -27,8 +29,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
 ]
 
 ROOT_URLCONF = 'todolist.urls'
