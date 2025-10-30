@@ -8,7 +8,7 @@
     <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Salvar Tarefa</button>
+        <button type="submit">[Salvar Tarefa]</button>
     </form>
 
     <a href="{% url 'task_list' %}" class="back-link">← Voltar para a lista</a>
