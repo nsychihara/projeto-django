@@ -5,11 +5,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    libpq-dev gcc && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libpq-dev && rm -rf /var/lib/apt/lists/*
 
-COPY todolist/requirements.txt .                                                                                                                                                                                                                                                                                                     
+COPY todolist/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
